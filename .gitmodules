@@ -1,0 +1,7 @@
+[submodule "ct-fuzz"]
+	path = ct-fuzz
+	url = git@github.com:michael-emmi/ct-fuzz.git
+[submodule "jemalloc"]
+	path = jemalloc
+	url = https://github.com/jemalloc/jemalloc.git
+	branch = 61efbda
