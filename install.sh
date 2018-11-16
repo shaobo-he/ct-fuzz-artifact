@@ -32,15 +32,23 @@ sudo update-alternatives --install /usr/bin/opt opt /usr/bin/opt-3.9 30
 cd python-pkgs
 (cd setuptools-40.5.0 && sudo python setup.py install)
 (cd lit-0.7.0 && sudo python setup.py install)
+(cd docutils-0.14 && sudo python setup.py install)
 (cd statistics-1.0.3.5  && sudo python setup.py install)
 cd ..
 
 # install jemalloc
 cd jemalloc
+autoconf
 ./configure
 make
 sudo make install || true
 cd ..
+
+# copy files
+cp openssl-1.1.0h.tar.gz ct-benchmarks/openssl
+cp openssl-1.1.0h.tar.gz ct-benchmarks/s2n
+cp libbotan-2.so.9 ct-benchmarks/botan/src
+(cd ct-benchmarks/botan/src && ln -s libbotan-2.so.9 libbotan-2.so)
 
 # install ct-fuzz
 cd ct-fuzz
