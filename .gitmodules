@@ -5,3 +5,6 @@
 	path = jemalloc
 	url = https://github.com/jemalloc/jemalloc.git
 	branch = 61efbda
+[submodule "ct-benchmarks"]
+	path = ct-benchmarks
+	url = git@github.com:michael-emmi/ct-benchmarks.git
