@@ -14,6 +14,9 @@ sudo dpkg -i clang-3.9_1%3a3.9.1-19ubuntu1_amd64.deb
 sudo dpkg -i libsigsegv2_2.12-1_amd64.deb
 sudo dpkg -i m4_1.4.18-1_amd64.deb
 sudo dpkg -i autoconf_2.69-11_all.deb
+sudo dpkg -i liberror-perl_0.17025-1_all.deb
+sudo dpkg -i git-man_1%3a2.17.1-1ubuntu0.3_all.deb
+sudo dpkg -i git_1%3a2.17.1-1ubuntu0.3_amd64.deb
 cd ..
 
 sudo apt autoremove clang-6.0 -y
@@ -29,6 +32,7 @@ sudo update-alternatives --install /usr/bin/opt opt /usr/bin/opt-3.9 30
 cd python-pkgs
 (cd setuptools-40.5.0 && sudo python setup.py install)
 (cd lit-0.7.0 && sudo python setup.py install)
+(cd statistics-1.0.3.5  && sudo python setup.py install)
 cd ..
 
 # install jemalloc
