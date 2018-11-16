@@ -96,6 +96,8 @@ You can exit afl-fuzz in one minute.
 TODO: prepare a patch
 
 To reproduce evaluation results:
+0. We provide a script in the artifact directory, `run.sh` that runs all benchmarks once for both constant-time analysis and more precise analysis with cache models. Simply invoke it: `sh run.sh`. If you are interested in more detailed exploration of these benchmarks, please follow the instructions below.
+
 1. Go back to directory `ct-benchmarks`.
 We have seven top level `build` directories that contain binaries built by ct-fuzz. They are,
 ```
