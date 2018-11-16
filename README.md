@@ -1,12 +1,4 @@
-Directory Description:
-
-- artifact
-  - ct-fuzz # the tool described in the paper
-  - ct-benchmarks # benchmarks used for evaluating ct-fuzz
-
-=================================================================
-
-Instructions to Build ct-fuzz:
+## Instructions to Build ct-fuzz:
 
 0.1. Login as root: sudo su -
 
@@ -24,12 +16,10 @@ type in the password of root access.
 4. Go to `ct-fuzz/test` directory and execute `lit .`. You should expect to see
 all regressions passed.
 
-=================================================================
-
-Instructions to Run ct-fuzz:
+## Instructions to Run ct-fuzz:
 
 We use the example in the paper to demonstrate the basic usage of ct-fuzz.
-The example is ex/encrypt.c
+The example is `ex/encrypt.c`.
 
 1. Go to `ex` directory.
 
@@ -39,7 +29,9 @@ A seed is printed as `\x31\x32\x33\x34\x04\x00\x00\x00`.
 3. Make an input directory to afl-fuzz: `mkdir in`
 
 4. Duplicate the seed and save it as a binary file in directory `in`:
-`echo -n -e '\x31\x32\x33\x34\x04\x00\x00\x00\x31\x32\x33\x34\x04\x00\x00\x00' > in/test`
+```
+echo -n -e '\x31\x32\x33\x34\x04\x00\x00\x00\x31\x32\x33\x34\x04\x00\x00\x00' > in/test
+```
 
 5. Run afl-fuzz: `afl-fuzz -i in -o out ./encrypt`. It should report crashes immediately.
 Type "Ctrl+C" to exit afl-fuzz.
@@ -51,15 +43,18 @@ Type "Ctrl+C" to exit afl-fuzz.
 `cat out/crashes/id\:000000\,sig\:42\,src\:000000\,op\:flip1\,pos\:0 | DEBUG=true ./encrypt | python ~/artifact/ct-fuzz/scripts/ct-fuzz-diff.py`
 The last line is where the divergence occurs.
 
-TODO: show cache model
+7 To check cache timing leakage, invoke `ct-fuzz` again,
+```
+ct-fuzz encrypt.c --entry-point=encrypt -o encrypt --compiler-options="-g" --memory-leakage=cache
+```
 
-=================================================================
+8. Repeat 3-6.
 
-Instructions to Reproduce Results:
+## Instructions to Reproduce Results:
 
 0. Go to directory `ct-benchmarks` and type `make`. It takes a while to build all benchmarks.
 
-To reproduce the case study:
+### To reproduce the case study:
 1. Go to directory `botan/build`
 2. Create input directory for afl-fuzz following similar instructions above:
 ```
@@ -90,12 +85,10 @@ ct-fuzz --entry-point aes_wrapper -o build/aes_wrapper specs/aes_wrapper.cpp \
 cd build
 ```
 
-6. Rerun afl-fuzz with the same command. There shouldn't be any crashes within reasonably long time.
+6. Rerun afl-fuzz with the same command. There should not be any crashes within reasonably long time.
 You can exit afl-fuzz in one minute.
 
-TODO: prepare a patch
-
-To reproduce evaluation results:
+### To reproduce evaluation results:
 0. We provide a script in the artifact directory, `run.sh` that runs all benchmarks once for both constant-time analysis and more precise analysis with cache models. Simply invoke it: `sh run.sh <time-limit>`. We suggest first set the time limit to 10. Setting it to 100 may take a while. If you are interested in more detailed exploration of these benchmarks, please follow the instructions below.
 
 1. Go back to directory `ct-benchmarks`.
