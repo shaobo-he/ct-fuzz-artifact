@@ -19,10 +19,10 @@ all: $(objects)
 #src/libbotan-2.so: src/Makefile
 #	(cd src && make -j16 || true)
 #
-#src/Makefile:
-#	(cd src && python configure.py --disable-aes-ni  --disable-ssse3 --with-debug-info --disable-static-library)
+src/Makefile:
+	(cd src && python configure.py --disable-aes-ni  --disable-ssse3 --with-debug-info --disable-static-library)
 
-build/%: specs/%.cpp src/libbotan-2.so
+build/%: specs/%.cpp src/libbotan-2.so src/Makefile
 	mkdir -p $(dir $@)
 	ct-fuzz --entry-point $(patsubst %.cpp,%,$(notdir $<)) -o $@ $< \
 	--seed-file $(patsubst %,%.seed,$@) \
