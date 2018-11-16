@@ -45,10 +45,11 @@ sudo make install || true
 cd ..
 
 # copy files
-cp openssl-1.1.0h.tar.gz ct-benchmarks/openssl
-cp openssl-1.1.0h.tar.gz ct-benchmarks/s2n
-cp libbotan-2.so.9 ct-benchmarks/botan/src
+cp fixes/openssl-1.1.0h.tar.gz ct-benchmarks/openssl
+cp fixes/openssl-1.1.0h.tar.gz ct-benchmarks/s2n
+cp fixes/libbotan-2.so.9 ct-benchmarks/botan/src
 (cd ct-benchmarks/botan/src && ln -s libbotan-2.so.9 libbotan-2.so)
+cp fixes/Makefile ct-benchmarks/botan
 
 # install ct-fuzz
 cd ct-fuzz
