@@ -1,3 +1,7 @@
+## Testing Environment
+We tested the artifact on a machine with a 4GHz 6770k with 32 GB of RAM.
+And we allocate 2GB memory to the VM.
+
 ## Instructions to Build ct-fuzz:
 
 0.1. Login as root: sudo su -
@@ -48,7 +52,7 @@ The last line is where the divergence occurs.
 ct-fuzz encrypt.c --entry-point=encrypt -o encrypt --compiler-options="-g" --memory-leakage=cache
 ```
 
-8. Repeat 3-6.
+8. Repeat 3-6. You should not see any crashes. Exit afl-fuzz in one minute.
 
 ## Instructions to Reproduce Results:
 
@@ -92,6 +96,7 @@ You can exit afl-fuzz in one minute.
 0. We provide a script in the artifact directory, `run.sh` that runs all benchmarks once for both constant-time analysis and more precise analysis with cache models. Simply invoke it: `sh run.sh <time-limit>` in the artifact directory. We suggest first set the time limit to 10. Setting it to 100 may take a while. If you are interested in more detailed exploration of these benchmarks, please follow the instructions below.
 
 0.1 We also provide a script in the artifact directory `reproduce.sh` that tries to reproduce the evaluations done in the paper. You can invoke it by `sh reproduce.sh` in the artifact directory. Note that there will be differences in average runtime, executions done, total paths. But there should not be any differences in terms of whether a crash is found or not (i.e., unique_crashes > 0 or not). You can also see the trends like runtime of certain benchmarks are higher or cache models have less exeuctions done, etc.
+*Warning: this script can take hours to run*
 
 1. Go back to directory `ct-benchmarks`.
 We have seven top level `build` directories that contain binaries built by ct-fuzz. They are,
