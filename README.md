@@ -1,6 +1,6 @@
 ## Testing Environment
 We tested the artifact on a machine with a 4GHz 6770k with 32 GB of RAM.
-And we allocate 2GB memory to the VM.
+The VM we used to test the artifact is based on Ubuntu 18.04 and we allocate 2GB memory to the VM.
 
 ## Instructions to Build ct-fuzz:
 
