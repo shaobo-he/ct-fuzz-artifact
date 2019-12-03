@@ -99,7 +99,7 @@ You can exit afl-fuzz in one minute.
 *Warning: this script can take hours to run*
 
 1. Go back to directory `ct-benchmarks`.
-We have seven top level `build` directories that contain binaries built by ct-fuzz. They are,
+We have 8 top level `build` directories that contain binaries built by ct-fuzz. They are,
 ```
 ./wu-issta-2018/build
 ./BearSSL/build
