@@ -81,9 +81,9 @@ The first byte is different.
 cd .. # assume we're still in `botan/build` directory
 ct-fuzz --entry-point aes_wrapper -o build/aes_wrapper specs/aes_wrapper.cpp \
 --seed-file build/aes_wrapper.seed \
---compiler-options="-I/home/tacas19/artifact/ct-benchmarks/botan/src/build/include \
--L/home/tacas19/artifact/ct-benchmarks/botan/src/ \
--Wl,-rpath,/home/tacas19/artifact/ct-benchmarks/botan/src/ \
+--compiler-options="-I$HOME/artifact/ct-benchmarks/botan/src/build/include \
+-L$HOME/artifact/ct-benchmarks/botan/src/ \
+-Wl,-rpath,$HOME/artifact/ct-benchmarks/botan/src/ \
 -g -std=c++11 \
 -lbotan-2" --memory-leakage=cache
 cd build
