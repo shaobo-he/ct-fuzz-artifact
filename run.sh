@@ -11,7 +11,7 @@ run_ct_fuzz()
   echo '------------------------------------------'
   echo $1 
   echo '------------------------------------------'
-  python ~/artifact/ct-benchmarks/scripts/run.py --time-limit $TL --exit-on-crash $d | grep -E 'Wall time elapsed|unique_crashes'
+  python scripts/run.py --time-limit $TL --exit-on-crash $d | grep -E 'Wall time elapsed|unique_crashes'
 }
 
 make_bins()
