@@ -92,6 +92,18 @@ cd build
 6. Rerun afl-fuzz with the same command. There should not be any crashes within reasonably long time.
 You can exit afl-fuzz in one minute.
 
+7. To see the bug before the fix (the current commit), execute the following commands,
+```
+cd ../src # assume we're still in `botan/build` directory
+git checkout HEAD^
+rm libbotan-2.so*
+cd ..
+make
+cd build
+```
+Repeat 3-5 and you should be able to see AFL crashed even when the leakage model is cache.
+
+
 ### To reproduce evaluation results:
 0. We provide a script in the artifact directory, `run.sh` that runs all benchmarks once for both constant-time analysis and more precise analysis with cache models. Simply invoke it: `sh run.sh <time-limit>` in the artifact directory. We suggest first set the time limit to 10. Setting it to 100 may take a while. If you are interested in more detailed exploration of these benchmarks, please follow the instructions below.
 
